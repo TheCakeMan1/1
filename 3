@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#include <wiringPi.h>
+#include <wiringSerial.h>
+
+int main()
+{
+    int uart_port;
+    char uart_device[] = "/dev/ttyS4"; // Укажите соответствующий порт UART
+
+    // Инициализация WiringPi
+    if (wiringPiSetup() == -1)
+    {
+        fprintf(stderr, "Не удалось инициализировать WiringPi: %s\n", strerror(errno));
+        return 1;
+    }
+
+    // Открытие порта UART
+    if ((uart_port = serialOpen(uart_device, 9600)) < 0)
+    {
+        fprintf(stderr, "Не удалось открыть порт UART: %s\n", strerror(errno));
+        return 1;
+    }
+
+    // Чтение данных
+    while(true){
+        while (serialDataAvail(uart_port))
+        {
+            putchar(serialGetchar(uart_port));
+            fflush(stdout);
+        }
+    }
+
+
+    // Закрытие порта UART
+    serialClose(uart_port);
+
+    return 0;
+}
