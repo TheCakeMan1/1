@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 echo "Install Ffmpeg with mpp and rga"
-sudo apt -y install git meson cmake pkg-config gcc libdrm-dev wget libx265-dev libx264-dev
+sudo apt -y install git meson cmake pkg-config gcc libdrm-dev wget libx265-dev libx264-dev libsecret-1-dev
 echo "###############################"
 echo -e "______________\033[31mmpp\033[0m______________"
 echo "###############################"
