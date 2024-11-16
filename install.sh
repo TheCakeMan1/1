@@ -104,6 +104,7 @@ echo "###############################"
 echo -e "______________\033[31mconfig python\033[0m______________"
 echo "###############################"
 pip install rknn_toolkit_lite2-2.2.0-cp310-cp310-linux_aarch64.whl
+pip install opencv_python requests
 if [ $? -ne 0 ]; then
 	echo -e "\033[31mno config python\033[0m";
 	exit 1;
