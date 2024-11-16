@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 echo "Install Ffmpeg with mpp and rga"
-sudo apt -y install git meson cmake pkg-config gcc libdrm-dev wget libx265-dev libx264-dev libsecret-1-dev
+sudo apt -y install git meson cmake pkg-config gcc libdrm-dev wget libx265-dev libx264-dev libsecret-1-dev python3-pip
 echo "###############################"
 echo -e "______________\033[31mmpp\033[0m______________"
 echo "###############################"
@@ -91,6 +91,17 @@ if [ $? -ne 0 ]; then
 	exit 1;
 else 
 	echo -e "\033[0;32m\033[102mlibrga installed\033[0m";
+fi
+
+echo "###############################"
+echo -e "______________\033[31mconfig python\033[0m______________"
+echo "###############################"
+pip install rknn_toolkit_lite2-2.2.0-cp310-cp310-linux_aarch64.whl
+if [ $? -ne 0 ]; then
+	echo -e "\033[31mno config python\033[0m";
+	exit 1;
+else 
+	echo -e "\033[0;32m\033[102mok\033[0m";
 fi
 
 #g++ -g main.cpp postprocess.h postprocess.cpp -o ../bin/Release/main -lavcodec -lavformat -lavutil -lstdc++ -lopencv_core -lopencv_videoio -lopencv_highgui -lopencv_imgproc -lrga -lrknn_api
