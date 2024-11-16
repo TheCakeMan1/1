@@ -61,13 +61,20 @@ sleep 2
 echo "###############################"
 echo -e "______________\033[31mrknpu2\033[0m______________"
 echo "###############################"
-mkdir -p ~/dev && cd ~/dev
-git clone --depth=1 https://github.com/rockchip-linux/rknpu2.git
-cd rknpu2/runtime/RK3588/Linux/librknn_api/include
-sudo cp ./rknn* /usr/local/include
-cd ~/dev
-cd rknpu2/runtime/RK3588/Linux/librknn_api/aarch64
-sudo cp ./lib* /usr/local/lib
+cd rknpu/runtime/Linux/librknn_api/
+sudo cp -r include/ /usr/
+cd aarch64/
+sudo cp librknnrt.so /usr/lib
+cd ../rknn_server/aarch64/
+sudo cp -r usr/ /
+
+# mkdir -p ~/dev && cd ~/dev
+# git clone --depth=1 https://github.com/rockchip-linux/rknpu2.git
+# cd rknpu2/runtime/RK3588/Linux/librknn_api/include
+# sudo cp ./rknn* /usr/local/include
+# cd ~/dev
+# cd rknpu2/runtime/RK3588/Linux/librknn_api/aarch64
+# sudo cp ./lib* /usr/local/lib
 if [ $? -ne 0 ]; then
 	echo -e "\033[31mrknpu2 not install\033[0m";
 	exit 1;
