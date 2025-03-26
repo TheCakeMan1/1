@@ -47,7 +47,7 @@ echo "###############################"
 mkdir -p ~/dev && cd ~/dev
 git clone --depth=1 https://github.com/nyanmisaka/ffmpeg-rockchip.git ffmpeg
 cd ffmpeg
-./configure --prefix=/usr --enable-gpl --enable-version3 --enable-libdrm --enable-rkmpp --enable-rkrga --enable-libx265
+./configure --prefix=/usr --enable-shared --enable-gpl --enable-version3 --enable-libdrm --enable-rkmpp --enable-rkrga --enable-libx265 
 make -j $(nproc)
 make install
 if [ $? -ne 0 ]; then
